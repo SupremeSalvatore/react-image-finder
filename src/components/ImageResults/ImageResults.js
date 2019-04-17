@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import {
   GridList,
   GridListTile,
@@ -23,15 +24,31 @@ export class ImageResults extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+  getGridListCols = () => {
+    const {width}=this.props
+    if (isWidthUp('xl', width)) {
+      return 4;
+    }
+  
+    if (isWidthUp('lg', width)) {
+      return 3;
+    }
+  
+    if (isWidthUp('md', width)) {
+      return 2;
+    }
+  
+    return 1;
+  }
   render() {
     let imageListContent;
     const { images } = this.props;
     const { open, currentImg } = this.state;
     if (images) {
       imageListContent = (
-        <GridList cols={2} cellHeight={350}>
+        <GridList cols={this.getGridListCols()} cellHeight={350}>
           {images.map(img => (
-            <GridListTile key={img.id}>
+            <GridListTile key={img.id} cols={1}>
               <img src={img.largeImageURL} alt="" />
               <GridListTileBar
                 title={img.tags}
@@ -73,4 +90,4 @@ export class ImageResults extends Component {
 ImageResults.propTypes = {
   images: PropTypes.array.isRequired
 };
-export default ImageResults;
+export default withWidth()(ImageResults);

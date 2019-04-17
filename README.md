@@ -1,4 +1,4 @@
-# React Lyrics Finder
+# React Image Finder
 
 This app is made for practice in React using [pixabay](https://pixabay.com/api/docs/) api with ```@material-ui/core```. This was from tutorial I found on Youtube channel Brad Traversy which I adapted on new version of material-ui 
 You can check app here [https://supremesalvatore.github.io/react-image-finder/](https://supremesalvatore.github.io/react-image-finder/)
